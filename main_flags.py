@@ -2,13 +2,7 @@ from machine import Pin
 from neopixel import NeoPixel
 import time
 
-MAX_BRIGHTNESS = 10
-MIN_BRIGHTNESS = 1
-
-SEGMENT_INTERVAL = 30
-PRE_COLOR = (0,MAX_BRIGHTNESS,0)
-POST_COLOR = (0,0,MAX_BRIGHTNESS)
-CURRENT_COLOR = (MAX_BRIGHTNESS,0,0)
+from params import *
 
 t = None
 last_push = 0
