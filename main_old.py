@@ -2,56 +2,16 @@ from machine import Pin
 from neopixel import NeoPixel
 import time
 
-from params import *
+MAX_BRIGHTNESS = 255
+MIN_BRIGHTNESS = 1
 
+SEGMENT_INTERVAL = 30
+PRE_COLOR = (0,MAX_BRIGHTNESS,0)
+POST_COLOR = (0,0,MAX_BRIGHTNESS)
+CURRENT_COLOR = (MAX_BRIGHTNESS,0,0)
 t = None
 last_push = 0
-last_push_min =0
 debounce = 1
-
-current_command = None
-running = False
-
-class Command:
-    IDLE = 0
-    STARTED = 1
-    STOPPING = 2
-    ADD_MINUTE = 3
-
-def add_minute_anim():
-    global t
-
-def tick_anim():
-    global t
-
-def stop_anim():
-    global t
-
-def irq_start_stop(pin):
-    global t,  last_push, current_command
-    if time.time() < debounce + last_push:
-        print('stopped debounce')
-        return
-    print('button pushed')
-    last_push = time.time()
-    if running:
-        running = False
-        current_command = Command.STOPPING
-    else:
-        running = True
-        current_command = Command.STARTED
-
-
-def irq_add(pin):
-    global t, last_push, current_command 
-    if time.time() < debounce + last_push_min:
-        print('stopped debounce')
-        return
-    print('button pushed')
-    last_push_min = time.time()
-    current_command = Command.ADD_MINUTE
-    t.time_remaining.add_minute()
-
 
 def irq_callback(pin):
     global t, last_push
