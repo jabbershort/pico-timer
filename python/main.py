@@ -68,7 +68,7 @@ class KiddoTimer:
             if self.remaining_time == max_time:
                 print(f'active {i}')
                 self.np[i] = (0,0,MAX_BRIGHTNESS)
-            else:
+            else:   
                 self.np[i] = (MIN_BRIGHTNESS,0,0)
             
         self.np.write()
